@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form method="POST" action="{{ url_for('accounts.register') }}">
+            {{form.hidden_tag()}}
+            {{form.first_name.label(class="form-label")}}
+            {{form.first_name(class="form-input")}}
+            {{form.last_name.label(class="form-label")}}
+            {{form.last_name(class="form-input")}}
+            {{form.phone.label(class="form-label")}}
+            {{form.phone(class="form-input")}}
+
+            {{form.password.label(class="form-label")}}
+            {{form.password(class="form-input")}}
+
+            {{form.confirm_password.label(class="form-label")}}
+            {{form.confirm_password(class="form-input")}}
+
+            {{form.submit(class="form-button")}}
+        </form>
+    </div>
+</body>
+</html>
