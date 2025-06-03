@@ -2,6 +2,8 @@ from flask import Blueprint, flash, redirect, render_template, url_for
 from src import app
 from src.accounts.forms import RegisterForm, LoginForm
 from src.accounts.repo import register as register_fn, login as login_fn
+import traceback
+
 accounts_bp = Blueprint('accounts', __name__)
 
 
@@ -39,8 +41,8 @@ def login():
             )
             return redirect(url_for('core.index'))
         except ValueError as e:
-            flash('Wrong phone or password, try again')
+            flash('Wrong phone or password, try again', 'error')
         except Exception as e:
             flash('An error occured', 'danger')
-            app.logger.error(e, with_traceback=True)
+            app.logger.error(e, traceback.format_exc())
     return render_template('accounts/login.html', form=form)

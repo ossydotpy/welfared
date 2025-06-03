@@ -21,6 +21,6 @@ class RegisterForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    phone = IntegerField('Phone Number', validators=[DataRequired(), NumberRange(min=1000000000, max=9999999999)])
+    phone = StringField('Phone', validators=[DataRequired(), Length(min=10, max=15)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=100)])
     submit = SubmitField('Login')

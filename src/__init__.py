@@ -26,6 +26,9 @@ migrate = Migrate(app=app, db=db)
 login_manager = LoginManager(app)
 login_manager.init_app(app=app)
 
+login_manager.login_view = "accounts.login"
+login_manager.login_message_category = "info"
+
 # blueprint stuff
 from src.accounts.views import accounts_bp
 from src.core.views import core_bp

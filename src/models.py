@@ -1,7 +1,8 @@
 from src import db
 from src.utils import generate_pw_hash
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     _id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
