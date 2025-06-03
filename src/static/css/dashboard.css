@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #378d5c;
+    color: #2F4F2F;
+    position: relative; /* For potential overlay positioning */
+}
+
+/* --- Sidebar Toggle Elements (Initially hidden, shown on mobile) --- */
+.sidebar-toggle-checkbox {
+    display: none; /* Hide the actual checkbox */
+}
+
+.sidebar-toggle-label {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1002; /* Above sidebar and overlay */
+    width: 40px;
+    height: 40px;
+    background-color: #2F4F2F; /* Darker button background */
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* Padding inside the button for spacing lines */
+    box-sizing: border-box;
+}
+
+.sidebar-toggle-label span {
+    display: block;
+    width: 100%; /* Lines take full width of padded area */
+    height: 3px;
+    background-color: #E0F2E9; /* Light color for hamburger lines */
+    border-radius: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar-toggle-label span + span {
+    margin-top: 4px; /* Space between lines */
+}
+
+.sidebar-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar toggle, above main content */
+    cursor: pointer;
+}
+
+
+/* --- Dashboard Structure --- */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    padding: 20px;
+    color: #E0F2E9;
+    background-color: #378d5c;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    border-bottom: 1px solid #5cb85c;
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #D0E0D0;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, font-weight 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar ul li a:hover {
+    background-color: #4a9d6f;
+    color: #FFFFFF;
+    transform: translateX(5px);
+    font-weight: bold;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    border-top-left-radius: 25px;
+    background-color: #E6F5E6;
+    /* margin-top: 5rem; -- This will be adjusted for mobile */
+    overflow-x: hidden;
+    transition: filter 0.3s ease-in-out; /* For blur effect if desired */
+}
+/* Desktop: if you have a fixed header making main-content need margin-top */
+@media (min-width: 769px) {
+    .main-content {
+        margin-top: 5rem; /* Restore this for desktop if needed */
+    }
+    .sidebar-toggle-label,
+    .sidebar-overlay {
+        display: none !important; /* Ensure toggle elements are hidden on desktop */
+    }
+}
+
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+    gap: 20px;
+}
+
+.analytics-block {
+    background-color: #F0FFF0;
+    border: 1px solid #A9C4A9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 60, 0, 0.08);
+}
+
+.analytics-block h3 {
+    margin-top: 0;
+    color: #006400;
+    border-bottom: 1px solid #D0E0D0;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.analytics-block.span-2-col {
+    grid-column: span 2;
+}
+
+.analytics-block.span-2-row {
+    grid-row: span 2;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+/* Medium screens (e.g., tablets, smaller desktops) */
+@media (max-width: 992px) {
+    /* Only adjust sidebar width if not in mobile toggle mode */
+    .sidebar:not(.is-mobile-active) { /* Add a class via JS if you mix, or rely on 768px breakpoint */
+        width: 200px;
+    }
+
+    .bento-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .main-content {
+        /* margin-top: 3rem; -- Potentially adjusted by mobile rules */
+    }
+}
+
+
+/* Small screens (e.g., portrait tablets, large phones) - COLLAPSIBLE SIDEBAR */
+@media (max-width: 768px) {
+    .sidebar-toggle-label {
+        display: flex; /* Show the hamburger icon */
+    }
+
+    .dashboard-container {
+        /* flex-direction: column; -- Not needed if sidebar is fixed position */
+    }
+
+    .sidebar {
+        position: fixed; /* Take sidebar out of normal flow */
+        top: 0;
+        left: 0;
+        width: 280px; /* Fixed width for open sidebar */
+        max-width: 80%; /* Max width, e.g., 80% of viewport */
+        height: 100vh; /* Full viewport height */
+        transform: translateX(-100%); /* Initially hidden off-screen to the left */
+        z-index: 1000; /* Above overlay, below toggle button */
+        overflow-y: auto; /* Allow scrolling within sidebar if content is long */
+        padding-top: 60px; /* Space for the fixed toggle button area */
+        box-shadow: 3px 0 15px rgba(0,0,0,0.2); /* Give it some depth */
+        border-top-left-radius: 0; /* No radius when it's a sliding panel */
+    }
+
+    .sidebar h2 {
+        text-align: left; /* Keep alignment for mobile panel */
+        margin-left: 0; /* Adjust if padding made it look off */
+        margin-right: 0;
+    }
+
+    /* Keep vertical list for links */
+    .sidebar ul li a {
+        text-align: left;
+        transform: none; /* No translateX on hover for mobile panel */
+        padding: 12px 15px;
+    }
+    .sidebar ul li a:hover {
+        transform: none;
+        font-weight: normal; /* Optional: remove bold on hover for mobile */
+    }
+
+
+    /* --- Toggle Checkbox Interactions --- */
+    .sidebar-toggle-checkbox:checked ~ .sidebar-toggle-label span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg); /* 3px height + 4px margin */
+    }
+    .sidebar-toggle-checkbox:checked ~ .sidebar-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+    .sidebar-toggle-checkbox:checked ~ .sidebar-toggle-label span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg); /* 3px height + 4px margin */
+    }
+
+    .sidebar-toggle-checkbox:checked ~ .dashboard-container .sidebar {
+        transform: translateX(0); /* Slide sidebar into view */
+    }
+
+    .sidebar-toggle-checkbox:checked ~ .sidebar-overlay {
+        display: block; /* Show the overlay */
+    }
+
+    /* Adjust main content when sidebar is potentially active or toggle is present */
+    .main-content {
+        margin-top: 0; /* Remove desktop margin */
+        padding-top: 60px; /* Space for the fixed toggle button to not overlap content */
+        border-top-left-radius: 0; /* No radius when stacked or side-panel */
+        border-top-right-radius: 0;
+    }
+
+    /* Optional: Prevent body scroll when mobile menu is open */
+    /* This is better handled with a JS class toggle on body like .body-no-scroll { overflow: hidden; } */
+    /* .sidebar-toggle-checkbox:checked ~ body {
+        overflow: hidden;
+    } */ /* This selector doesn't work directly for body, needs JS or different structure */
+}
+
+/* Extra small screens (e.g., mobile phones) */
+@media (max-width: 576px) {
+    body {
+        font-size: 15px;
+    }
+
+    .main-content {
+        padding: 15px; /* General padding */
+        padding-top: 55px; /* Space for toggle: 10px top offset + 35px height + 10px buffer */
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        grid-auto-rows: minmax(150px, auto);
+    }
+
+    .analytics-block {
+        padding: 15px;
+    }
+    .analytics-block h3 {
+        font-size: 1.1em;
+    }
+    .analytics-block.span-2-col,
+    .analytics-block.span-2-row {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .sidebar-toggle-label {
+        top: 10px;
+        left: 10px;
+        width: 35px;
+        height: 35px;
+        padding: 6px;
+    }
+    .sidebar-toggle-label span + span {
+        margin-top: 3px; /* Adjust for smaller icon */
+    }
+
+    /* Hamburger to X for smaller icon */
+    /* Line height 3px, margin between 3px. Translate by 3+3 = 6px */
+    .sidebar-toggle-checkbox:checked ~ .sidebar-toggle-label span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+    .sidebar-toggle-checkbox:checked ~ .sidebar-toggle-label span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .sidebar {
+        width: 85%;
+        max-width: 280px; /* Cap the width */
+        padding-top: 50px; /* Space for smaller toggle */
+    }
+}
