@@ -1,0 +1,32 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Create New Group{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_groups.css') }}">
+{% endblock %}
+
+{% block main_content %}
+<div class="create-group-page">
+    <h2>Create New Group</h2>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.name.label }}<br>
+            {{ form.name(class_="form-control") }}
+            {% for error in form.name.errors %}
+                <span class="error-text">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.description.label }}<br>
+            {{ form.description(class_="form-control") }}
+            {% for error in form.description.errors %}
+                <span class="error-text">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class_="btn-submit") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

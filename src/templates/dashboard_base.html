@@ -24,7 +24,7 @@
             <h2>Dashboard</h2>
             <ul>
                 <li><a href="#">Overview</a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="{{url_for('core.admin_groups')}}">Groups</a></li>
                 <li><a href="#">Settings</a></li>
                 {% block sidebar_extra %}{% endblock %}
             </ul>
@@ -33,5 +33,7 @@
             {% block main_content %}{% endblock %}
         </div>
     </div>
+
+    {% block script_extra %}{%endblock%}
 </body>
 </html>
