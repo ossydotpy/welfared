@@ -12,6 +12,9 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(15), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
 
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
     groups = db.relationship(
         'Group',
         back_populates='owner',
@@ -40,6 +43,8 @@ class Group(db.Model):
     logo = db.Column(db.String, nullable=True)
     description = db.Column(db.Text, nullable=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user._id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     owner = db.relationship('User', back_populates='groups')
 
