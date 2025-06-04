@@ -173,7 +173,7 @@ body {
     }
 
     .main-content {
-        /* margin-top: 3rem; -- Potentially adjusted by mobile rules */
+        margin-top: 3rem;
     }
 }
 
@@ -182,10 +182,6 @@ body {
 @media (max-width: 768px) {
     .sidebar-toggle-label {
         display: flex; /* Show the hamburger icon */
-    }
-
-    .dashboard-container {
-        /* flex-direction: column; -- Not needed if sidebar is fixed position */
     }
 
     .sidebar {
