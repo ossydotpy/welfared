@@ -52,7 +52,6 @@ def delete_group(group_id):
         db.session.commit()
         flash('Group deleted successfully', 'success')
     except Exception as e:
-        logging.exception('Error deleting group')
         db.session.rollback()
         flash('An error occurred while deleting the group', 'error')
 

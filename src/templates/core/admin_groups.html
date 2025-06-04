@@ -32,7 +32,6 @@
     </table>
     {% else %}
     <p class="no-groups-message"> 
-        form:delete
         You don't own any groups yet. <a href="{{ url_for('core.create_group') }}">Create Your First Group</a>
     </p>
     {% endif %}
@@ -42,23 +41,15 @@
 {% block script_extra %}
 <script>
 async function deleteGroup(groupId) {
-    const url = `/dashboard/groups/${groupId}/delete`
-    
-    try {
-        console.log(url)
-        const response = await fetch(url, {
-            method: 'DELETE'
-        });
-
-        if (response.ok) {
-            window.location.reload();
-        } else {
-            const errorText = await response.text();
-            console.error('Delete failed:', errorText);
-        }
-    } catch (error) {
-        console.error('Network or server error:', error);
+    if (!confirm('Are you sure you want to delete this group?')) {
+        return;
     }
+    
+    await fetch(`/dashboard/groups/${groupId}/delete`, {
+        method: 'DELETE'
+    });
+    
+    window.location.href = '/dashboard/groups';
 }
 </script>
 {% endblock %}
