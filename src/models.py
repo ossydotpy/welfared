@@ -62,6 +62,12 @@ class Group(db.Model):
         lazy=True
     )
 
+    def __init__(self, name, owner_id, logo=None, description=None):
+        self.name = name
+        self.owner_id = owner_id
+        self.logo = logo
+        self.description = description
+
 
 class GroupMember(db.Model):
     __tablename__ = 'group_member'
