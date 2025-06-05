@@ -80,6 +80,33 @@
     border-bottom: none;
 }
 
+/* Actions cell styling */
+.actions-cell {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* View group button styling */
+.view-group-button {
+    background-color: #378d5c;
+    color: #FFFFFF !important;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.view-group-button:hover {
+    background-color: #2d6a4f;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(55, 141, 92, 0.3);
+}
+
 /* Delete button styling */
 .delete-group-button {
     background-color: #dc3545;
@@ -313,9 +340,17 @@
         padding: 8px 4px;
     }
     
+    .actions-cell {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .view-group-button,
     .delete-group-button {
         font-size: 0.8rem;
         padding: 6px 12px;
+        width: 100%;
+        text-align: center;
     }
 }
 

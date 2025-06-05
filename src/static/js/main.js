@@ -49,3 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
         lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
     }, false);
 });
+
+
+async function deleteGroup(groupId) {
+        if (!confirm('Are you sure you want to delete this group?')) {
+            return;
+        }
+
+        await fetch(`/dashboard/groups/${groupId}/delete`, {
+            method: 'DELETE'
+        });
+
+        window.location.href = '/dashboard/groups';
+    }

@@ -1,0 +1,363 @@
+/* src/static/css/group_details.css */
+
+.group-details-container {
+    background-color: #F0FFF0;
+    border: 1px solid #A9C4A9;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 60, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Group header with title and owner actions */
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #D0E0D0;
+}
+
+.group-header h2 {
+    color: #006400;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.owner-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-edit {
+    background-color: #378d5c;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(55, 141, 92, 0.2);
+}
+
+.btn-edit:hover {
+    background-color: #2d6a4f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(55, 141, 92, 0.3);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Group information card */
+.group-info-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E0F2E9;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 60, 0, 0.05);
+}
+
+.group-info-card h3 {
+    color: #006400;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #E0F2E9;
+    padding-bottom: 10px;
+}
+
+.info-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item .label {
+    font-weight: 600;
+    color: #2F4F2F;
+    min-width: 100px;
+}
+
+.info-item .value {
+    color: #555;
+    text-align: right;
+    flex: 1;
+}
+
+/* Members section */
+.members-section {
+    margin-bottom: 25px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D0E0D0;
+}
+
+.section-header h4 {
+    color: #006400;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.btn-add-member,
+.btn-setup-welfare {
+    background-color: #378d5c;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-add-member:hover,
+.btn-setup-welfare:hover {
+    background-color: #2d6a4f;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(55, 141, 92, 0.3);
+}
+
+/* Members grid */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.member-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E0F2E9;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 60, 0, 0.05);
+}
+
+.member-card:hover {
+    box-shadow: 0 3px 8px rgba(0, 60, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.member-name {
+    font-weight: 600;
+    color: #2F4F2F;
+    font-size: 1rem;
+}
+
+.member-phone {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.member-status {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background-color: #E8F5E8;
+    color: #2d6a4f;
+    align-self: flex-start;
+}
+
+.btn-remove-member {
+    background-color: #dc3545;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-remove-member:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* No members/welfare state */
+.no-members,
+.no-welfare {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    background-color: #F8F9FA;
+    border-radius: 8px;
+    border: 2px dashed #D0E0D0;
+}
+
+/* Welfare section */
+.welfare-section {
+    background-color: #FFFFFF;
+    border: 1px solid #E0F2E9;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 60, 0, 0.05);
+}
+
+.welfare-info {
+    background-color: #F0FFF0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #378d5c;
+}
+
+.welfare-info p {
+    margin: 5px 0;
+    color: #2F4F2F;
+}
+
+/* Navigation actions */
+.navigation-actions {
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #D0E0D0;
+}
+
+.btn-back {
+    background-color: #6c757d;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #545b62;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .group-details-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .group-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .owner-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .btn-add-member,
+    .btn-setup-welfare {
+        width: 100%;
+    }
+    
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .btn-remove-member {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .group-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .owner-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .info-item .value {
+        text-align: left;
+    }
+}
+
+/* Focus states for accessibility */
+.btn-edit:focus,
+.btn-delete:focus,
+.btn-add-member:focus,
+.btn-setup-welfare:focus,
+.btn-remove-member:focus,
+.btn-back:focus {
+    outline: 2px solid #378d5c;
+    outline-offset: 2px;
+}

@@ -28,9 +28,14 @@ def admin_groups():
 def create_group():
     form = CreateWelfareGroupForm()
     if form.validate_on_submit():
-        new_group = Group(name=form.name.data, owner_id=current_user.get_id())
+        new_group = Group(
+            name=form.name.data, 
+            owner_id=current_user.get_id(),
+            description=form.description.data
+        )
         db.session.add(new_group)
         db.session.commit()
+        flash('Group created successfully!', 'success')
         return redirect(url_for('core.admin_groups'))
 
     return render_template('core/create_group.html', form=form)
@@ -56,3 +61,16 @@ def delete_group(group_id):
         flash('An error occurred while deleting the group', 'error')
 
     return redirect(url_for('core.admin_groups'))
+
+@core_bp.route('/dashboard/group/<int:group_id>/')
+@login_required
+def group_details(group_id):
+    group = db.session.get(Group, group_id)
+    if not group:
+        flash('Group not found', 'error')
+        return redirect(url_for('core.admin_groups'))
+
+    # Check if current user is the owner
+    is_owner = group.owner_id == int(current_user.get_id())
+    
+    return render_template('core/group_details.html', group=group, is_owner=is_owner)

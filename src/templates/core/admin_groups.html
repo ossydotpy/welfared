@@ -25,7 +25,10 @@
             <tr>
                 <td>{{ group.name }}</td>
                 <td>{{ group.members | length }}</td>
-                <td><button class="delete-group-button" onclick="deleteGroup('{{ group._id }}')">Delete</button></td>
+                <td class="actions-cell">
+                    <a href="{{ url_for('core.group_details', group_id=group._id) }}" class="view-group-button">View</a>
+                    <button class="delete-group-button" onclick="deleteGroup('{{ group._id }}')">Delete</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -36,20 +39,4 @@
     </p>
     {% endif %}
 </div> 
-{% endblock %}
-
-{% block script_extra %}
-<script>
-async function deleteGroup(groupId) {
-    if (!confirm('Are you sure you want to delete this group?')) {
-        return;
-    }
-    
-    await fetch(`/dashboard/groups/${groupId}/delete`, {
-        method: 'DELETE'
-    });
-    
-    window.location.href = '/dashboard/groups';
-}
-</script>
 {% endblock %}
