@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Welcome{% endblock %} - WelfareD</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        {% block extra_head %}{% endblock %}
+    </head>
+<body>
+    <header class="site-header" role="banner">
+        <div class="container header-container">
+            <a href="{{ url_for('core.index') }}" class="site-logo" aria-label="WelfareD Home">
+                <h1>WelfareD</h1>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li class="nav-item {% if request.endpoint == 'core.index' %}active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('core.index') }}">Home</a>
+                    </li>
+                    <li class="nav-item {% if request.endpoint == 'main.about' %}active{% endif %}">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+
+                    {% if not current_user.is_authenticated %}
+                        <li class="nav-item nav-item--spacer-before {% if request.endpoint == 'accounts.login' %}active{% endif %}">
+                            <a class="nav-link nav-link-login" href="{{ url_for('accounts.login') }}">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-button nav-button-primary" href="{{ url_for('accounts.register') }}">
+                                Sign up <span class="icon-arrow">↗</span> {# ↗ arrow character #}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item nav-item--spacer-before {% if request.endpoint == 'core.dashboard' %}active{% endif %}">
+                            <a class="nav-link" href="{{url_for('core.dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            {# You can style Logout as a simple link or a secondary button #}
+                            <a class="nav-link" href="#">Logout</a>
+                            {# Example for button style logout:
+                            <a class="nav-button nav-button-secondary" href="#">Logout</a>
+                            #}
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main">
+        <div class="container content-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages" role="alert">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer-main" role="contentinfo" aria-label="Site footer">
+        <div class="container">
+            &copy; 2025 WelfareD
+            <p>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

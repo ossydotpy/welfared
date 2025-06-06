@@ -1,0 +1,55 @@
+{% extends 'dashboard_base.html' %}
+
+{% block main_content %}
+    <h1>Welfare Program Analytics</h1>
+    <div class="bento-grid">
+        <div class="analytics-block span-2-col">
+            <h3>Recipient Registrations Over Time</h3>
+            <p>Chart showing new recipient sign-ups (e.g., daily, weekly, monthly).</p>
+            <!-- Example data points you might show:
+                <p>+15% from last month</p>
+                <p>Current Active Recipients: <strong>1,250</strong></p>
+            -->
+        </div>
+        <div class="analytics-block span-2-row">
+            <h3>Aid Distribution Overview</h3>
+            <p>Summary of funds/resources distributed.</p>
+            <!-- Example data points:
+                <ul>
+                    <li>Total Aid Disbursed (Last 30 Days): <strong>$75,800</strong></li>
+                    <li>Food Assistance Program: <strong>$32,500</strong></li>
+                    <li>Housing Support: <strong>$25,300</strong></li>
+                    <li>Medical Aid: <strong>$18,000</strong></li>
+                    <li>Pending Disbursements: <strong>$5,200</strong></li>
+                </ul>
+            -->
+        </div>
+        <div class="analytics-block">
+            <h3>Most Requested Aid Programs</h3>
+            <p>List of top programs based on applications or disbursements.</p>
+            <!-- Example:
+                <ol>
+                    <li>Food Vouchers</li>
+                    <li>Emergency Shelter</li>
+                    <li>Utility Bill Assistance</li>
+                </ol>
+            -->
+        </div>
+        <div class="analytics-block">
+            <h3>Application Approval Rate</h3>
+            <p>Percentage of submitted applications that are approved.</p>
+            <!-- Example:
+                <p><strong>82%</strong> (Last 90 Days)</p>
+                <p>Average Processing Time: <strong>7 Days</strong></p>
+            -->
+        </div>
+        <div class="analytics-block span-2-col">
+            <h3>Recipient Density by Area</h3>
+            <p>Map or chart showing concentration of recipients by region/district.</p>
+            <!-- Example:
+                <p>Highest Concentration: <strong>North District (350 recipients)</strong></p>
+                <p>Emerging Need: <strong>Westside Suburb (+20% new applications)</strong></p>
+            -->
+        </div>
+    </div>
+{% endblock %}

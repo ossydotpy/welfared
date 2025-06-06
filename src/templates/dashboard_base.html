@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar Toggle Elements (for mobile) -->
+    <input type="checkbox" id="sidebar-toggle-checkbox" class="sidebar-toggle-checkbox">
+    <label for="sidebar-toggle-checkbox" class="sidebar-toggle-label">
+        <!-- Hamburger Icon Lines -->
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <!-- Optional: Overlay to click outside to close -->
+    <label for="sidebar-toggle-checkbox" class="sidebar-overlay"></label>
+
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="#">Overview</a></li>
+                <li><a href="{{url_for('core.admin_groups')}}">Groups</a></li>
+                <li><a href="#">Settings</a></li>
+                {% block sidebar_extra %}{% endblock %}
+            </ul>
+        </div>
+        <div class="main-content">
+            {% block main_content %}{% endblock %}
+        </div>
+    </div>
+
+    {% block script_extra %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {%endblock%}
+</body>
+</html>

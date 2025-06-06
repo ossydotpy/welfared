@@ -1,0 +1,42 @@
+{% extends 'dashboard_base.html' %}
+{%block title %}My Groups {%endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_groups.css') }}">
+{% endblock %}
+
+{% block main_content %}
+<div class="admin-groups-container">  {# Add the container div here #}
+    <a href="{{ url_for('core.create_group') }}" class="add-group-button">+ Add Group</a>
+
+
+    <h2>Admin Groups</h2>
+
+    {% if groups %}
+    <table class="group-table">  {# Add the class here #}
+        <thead>
+            <tr>
+                <th>Group Name</th>
+                <th>Number of Members</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+            <tr>
+                <td>{{ group.name }}</td>
+                <td>{{ group.members | length }}</td>
+                <td class="actions-cell">
+                    <a href="{{ url_for('core.group_details', group_id=group._id) }}" class="view-group-button">View</a>
+                    <button class="delete-group-button" onclick="deleteGroup('{{ group._id }}')">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-groups-message"> 
+        You don't own any groups yet. <a href="{{ url_for('core.create_group') }}">Create Your First Group</a>
+    </p>
+    {% endif %}
+</div> 
+{% endblock %}
